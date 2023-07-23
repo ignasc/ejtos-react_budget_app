@@ -22,7 +22,6 @@ const Budget = () => {
                 value={budget}
                 style={{ marginLeft: '1rem' , size: 10}}
                 onChange={(event) => {
-                    console.log(event.target.value)
                     setBudget(event.target.value)
                 }}
             >
