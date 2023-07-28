@@ -6,7 +6,11 @@ const Budget = () => {
     const { dispatch, budget } = useContext(AppContext);
 
     const setBudget = (value) => {
-        const newBudgetValue = parseInt(value)
+        let newBudgetValue = parseInt(value)
+        //Check if value exceeds 20k and change it accordingly
+        if(value > 20000){
+            newBudgetValue = 20000;
+        };
         dispatch({
             type: 'SET_BUDGET',
             payload: newBudgetValue
@@ -20,6 +24,8 @@ const Budget = () => {
                 type='number'
                 id='budget'
                 value={budget}
+                step='10'
+                max='20000'
                 style={{ marginLeft: '1rem' , size: 10}}
                 onChange={(event) => {
                     setBudget(event.target.value)
