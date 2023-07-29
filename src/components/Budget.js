@@ -1,20 +1,35 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Budget = () => {
 
-    const { dispatch, budget } = useContext(AppContext);
+    const { dispatch, budget, remaining } = useContext(AppContext);
 
     const setBudget = (value) => {
         let newBudgetValue = parseInt(value)
-        //Check if value exceeds 20k and change it accordingly
-        if(value > 20000){
+
+        //Check if entered value is a number
+        if(isNaN(parseInt(value))){
+            alert("Please enter a valid number.");
+            newBudgetValue = budget;
+        };
+
+        //Set upper limit to 20000 when entering manually
+        if(parseInt(value) > 20000){
             newBudgetValue = 20000;
         };
+
+        //Check if budget is not being reduced below current spending
+        if(parseInt(value) < (budget - remaining)){
+            alert("Budget cannot be lower than current expenses £" + (budget - remaining));
+            newBudgetValue = budget - remaining;
+        };
+
         dispatch({
             type: 'SET_BUDGET',
             payload: newBudgetValue
         })
+
     }
 
     return (

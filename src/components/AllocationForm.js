@@ -9,18 +9,28 @@ const AllocationForm = (props) => {
     const [action, setAction] = useState('');
 
     const submitEvent = () => {
+            let newCost = parseInt(cost);
+
             //Check if entered value is a number
-            if(isNaN(parseInt(cost))){
+            if(isNaN(parseInt(newCost))){
                 alert("Please enter a valid number.");
                 setCost("");
                 return;
             };
 
-            if(cost > remaining) {
-                alert("The value cannot exceed remaining funds  £"+remaining);
+            //Check if budged allocation exceeds remaining funds
+            if(newCost > remaining){
+                alert("The value cannot exceed remaining funds  £" + remaining);
                 setCost("");
                 return;
-            }
+            };
+
+            //Check if budget allocation exceeds maximum allowed sum of 20000
+            if(newCost > 20000){
+                alert("The spending cannot be over 20000")
+                setCost("");
+                return;
+            };
 
         const expense = {
             name: name,
