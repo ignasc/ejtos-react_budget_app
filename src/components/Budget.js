@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 
 const Budget = () => {
 
-    const { dispatch, budget, remaining } = useContext(AppContext);
+    const { dispatch, budget, remaining, currency } = useContext(AppContext);
 
     const setBudget = (value) => {
         let newBudgetValue = parseInt(value)
@@ -34,19 +34,18 @@ const Budget = () => {
 
     return (
         <div className='alert alert-secondary'>
-            <span>Budget: £</span>
+            <span>Budget: {currency}</span>
             <input
                 type='number'
                 id='budget'
                 value={budget}
                 step='10'
                 max='20000'
-                style={{ marginLeft: '1rem' , size: 10}}
+                style={{ marginLeft: '1rem' , size: 10, width:'60%'}}
                 onChange={(event) => {
                     setBudget(event.target.value)
                 }}
             >
-            
             </input>
         </div>
     );
