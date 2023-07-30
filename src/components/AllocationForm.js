@@ -75,7 +75,7 @@ const AllocationForm = (props) => {
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
                     <label
-                    for='cost'
+                    htmlFor='cost'
                     style={{ marginLeft: '2rem' , size: 10}}
                     >
                         {currency}
